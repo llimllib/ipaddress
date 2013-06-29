@@ -15,7 +15,8 @@ Given a uint32, converts it into a net.IP assuming that it's an ipv4 address.
 
 ### func BroadcastAddress(n \*net.IPNet) net.IP
 
-Given an IPNet, return the [broadcast address](https://en.wikipedia.org/wiki/Broadcast_address) for that network
+Given an IPNet, return the [broadcast address](https://en.wikipedia.org/wiki/Broadcast_address) for that network.
+Works for both ipv6 and ipv4.
 
 #Example
 
