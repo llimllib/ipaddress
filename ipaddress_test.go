@@ -36,3 +36,19 @@ func TestIpToUint32Errors(t *testing.T) {
 		t.FailNow()
 	}
 }
+
+func TestIntToIpv4(t *testing.T) {
+	tests := map[uint32]string{
+		0:        "0.0.0.0",
+		255:      "0.0.0.255",
+		256:      "0.0.1.0",
+		356:      "0.0.1.100",
+		65536:    "0.1.0.0",
+		65793:    "0.1.1.1",
+		16777216: "1.0.0.0",
+	}
+	for test, expected := range tests {
+		ip := IntToIPv4(test).String()
+		assertEqual(t, ip, expected)
+	}
+}

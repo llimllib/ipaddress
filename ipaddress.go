@@ -19,7 +19,7 @@ func IpToUint32(ip net.IP) (uint32, error) {
 	return n, nil
 }
 
-func Int128(ip net.IP) (uint64, uint64, error) {
+func IpToUint128(ip net.IP) (uint64, uint64, error) {
 	var m, n uint64
 	ip = ip.To16()
 	if ip == nil {
@@ -35,6 +35,6 @@ func Int128(ip net.IP) (uint64, uint64, error) {
 	return m, n, nil
 }
 
-func Int2IPv4(ip int) net.IP {
+func IntToIPv4(ip uint32) net.IP {
 	return net.IPv4(byte(ip>>24), byte(ip>>16&0xFF), byte(ip>>8&0xFF), byte(ip&0xFF))
 }
