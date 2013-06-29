@@ -23,27 +23,36 @@ Given an IPNet, return the BroadcastAddress for that network
 package main
 
 import (
-	"fmt"
-	"net"
-	"github.com/llimllib/ipaddress"
+    "fmt"
+    "net"
+    "github.com/llimllib/ipaddress"
 )
 
-ip := net.ParseIP("1.2.3.4")
-ipn := ipaddress.IpToUint32(ip)
+func main() {
+	ip := net.ParseIP("1.2.3.4")
 
-fmt.Printf("ip %s is %d as an integer", ip, ipn)
+	ipn, err := ipaddress.IpToUint32(ip)
+	if err != nil {
+		fmt.Printf("Error")
+	}
 
-ips := ipaddress.Uint32ToIP(ipn).String()
-fmt.Printf("And we used Uint32ToIP to return it to %s", ips)
+	fmt.Printf("ip %s is %d as an integer\n", ip, ipn)
 
-_, netw, _ := net.ParseCIDR("1.2.3.4/24")
-bcast := ipaddress.BroadcastAddress(netw)
-fmt.Printf("The network broadcast address is %s", netw.String())
+	ips := ipaddress.Uint32ToIP(ipn).String()
 
-//BroadcastAddress works for ipv6 too
-_, net6, _ := net.ParseCIDR("2001:658:22a:cafe::/64")
-broadcast = BroadcastAddress(net6)
-fmt.Printf("The ipv6 network broadcast address is %s", net6.String())
+	fmt.Printf("And we used Uint32ToIP to return it to %s\n", ips)
+
+	_, netw, _ := net.ParseCIDR("1.2.3.4/24")
+	bcast := ipaddress.BroadcastAddress(netw)
+
+	fmt.Printf("The network broadcast address is %s\n", bcast.String())
+
+	//BroadcastAddress works for ipv6 too
+	_, net6, _ := net.ParseCIDR("2001:658:22a:cafe::/64")
+	bcast = ipaddress.BroadcastAddress(net6)
+
+	fmt.Printf("The ipv6 network broadcast address is %s\n", bcast.String())
+}
 ```
 
 # TODOs
