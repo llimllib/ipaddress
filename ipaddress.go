@@ -36,5 +36,5 @@ func Int128(ip net.IP) (uint64, uint64, error) {
 }
 
 func Int2IPv4(ip int) net.IP {
-	return net.IPv4(byte(ip >> 24), byte(ip >> 16 & 0xFF), byte(ip >> 8 & 0xFF), byte(ip & 0xFF))
+	return net.IPv4(byte(ip>>24), byte(ip>>16&0xFF), byte(ip>>8&0xFF), byte(ip&0xFF))
 }
