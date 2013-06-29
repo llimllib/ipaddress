@@ -9,7 +9,7 @@ Right now, contains three functions:
 
 Converts a given net.IP into a uint32. Assumes that the IP is an ipv4, and returns an error if it's not.
 
-### func IntToIPv4(ip uint32) net.IP
+### func Uint32ToIP(ip uint32) net.IP
 
 Given a uint32, converts it into a net.IP assuming that it's an ipv4 address.
 
@@ -33,8 +33,8 @@ ipn := ipaddress.IpToUint32(ip)
 
 fmt.Printf("ip %s is %d as an integer", ip, ipn)
 
-ips := ipaddress.IntToIPv4(ipn).String()
-fmt.Printf("And we used IntToIpv4 to return it to %s", ips)
+ips := ipaddress.Uint32ToIP(ipn).String()
+fmt.Printf("And we used Uint32ToIP to return it to %s", ips)
 
 _, netw, _ := net.ParseCIDR("1.2.3.4/24")
 bcast := ipaddress.BroadcastAddress(netw)
