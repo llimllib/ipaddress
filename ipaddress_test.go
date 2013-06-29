@@ -31,8 +31,8 @@ func TestIpToUint32(t *testing.T) {
 }
 
 func TestIpToUint32Errors(t *testing.T) {
-	_, err := net.ParseIP("2001:0db8:85a3:0042:1000:8a2e:0370:7334")
-	if !err {
+	_, err := IpToUint32(net.ParseIP("2001:0db8:85a3:0042:1000:8a2e:0370:7334"))
+	if err == nil {
 	  t.FailNow()
 	}
 }
