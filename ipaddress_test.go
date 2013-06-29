@@ -52,3 +52,13 @@ func TestIntToIpv4(t *testing.T) {
 		assertEqual(t, ip, expected)
 	}
 }
+
+func TestBroadcastAddress(t *testing.T) {
+	_, netw, _ := net.ParseCIDR("1.2.3.4/24")
+	broadcast := BroadcastAddress(netw)
+	assertEqual(t, "1.2.3.255", broadcast.String())
+
+	_, net6, _ := net.ParseCIDR("2001:658:22a:cafe::/64")
+	broadcast = BroadcastAddress(net6)
+	assertEqual(t, "2001:658:22a:cafe:ffff:ffff:ffff:ffff", broadcast.String())
+}
