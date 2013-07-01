@@ -1,7 +1,6 @@
 package ipaddress
 
 import (
-	"bytes"
 	"encoding/binary"
 	"errors"
 	"net"
@@ -9,19 +8,17 @@ import (
 
 // Convert an ipv4 to a uint32
 func IpToUint32(ip net.IP) (uint32, error) {
-	var n uint32
 	ip = ip.To4()
 	if ip == nil {
 		return 0, errors.New("not able to convert ip to ipv4")
 	}
-	buf := bytes.NewBuffer([]byte(ip))
-	binary.Read(buf, binary.BigEndian, &n)
-	return n, nil
+
+	return binary.BigEndian.Uint32([]byte(ip)), nil
 }
 
 //convert a uint32 to an ipv4
 func Uint32ToIP(ip uint32) net.IP {
-	return net.IPv4(byte(ip>>24), byte(ip>>16&0xFF), byte(ip>>8&0xFF), byte(ip&0xFF))
+	return net.IPv4(byte(ip>>24), byte(ip>>16), byte(ip>>8), byte(ip))
 }
 
 // Return the broadcast address of a net range. Convert to IPv4 if possible,
