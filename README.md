@@ -3,7 +3,9 @@ ipaddress
 
 A library with some convenient ip address functions missing from the go standard library.
 
-Right now, contains three functions:
+Right now, it contains only three functions. There is a much more complete IP address library available
+[here](http://godoc.org/github.com/mikioh/ipaddr), so I recommend you use that unless you need these
+specific functions.
 
 ### func IpToUint32(ip net.IP) (uint32, error)
 
