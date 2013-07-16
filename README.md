@@ -64,3 +64,9 @@ func main() {
 
 * Convert to/from integers for ipv6. How to do this when Go doesn't have a uint128?
 * Count IPs in an IPMask
+
+License
+=======
+
+This code is licensed in the public domain under the WTFPL. Use it in any way you
+see fit, for any commercial or other use, with or without credit.
