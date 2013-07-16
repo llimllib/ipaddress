@@ -15,10 +15,12 @@ Converts a given net.IP into a uint32. Assumes that the IP is an ipv4, and retur
 
 Given a uint32, converts it into a net.IP assuming that it's an ipv4 address.
 
-### func BroadcastAddress(n \*net.IPNet) net.IP
+### func LastAddress(n \*net.IPNet) net.IP
 
-Given an IPNet, return the [broadcast address](https://en.wikipedia.org/wiki/Broadcast_address) for that network.
+Given an IPNet, return the last address within that IP range.
 Works for both ipv6 and ipv4.
+
+(For an ipv4 address, this will be the broadcast address of the net range)
 
 #Example
 
@@ -46,15 +48,15 @@ func main() {
 	fmt.Printf("And we used Uint32ToIP to return it to %s\n", ips)
 
 	_, netw, _ := net.ParseCIDR("1.2.3.4/24")
-	bcast := ipaddress.BroadcastAddress(netw)
+	last := ipaddress.LastAddress(netw)
 
-	fmt.Printf("The network broadcast address is %s\n", bcast.String())
+	fmt.Printf("The last address in the net range is %s\n", last.String())
 
-	//BroadcastAddress works for ipv6 too
+	//LastAddress works for ipv6 too
 	_, net6, _ := net.ParseCIDR("2001:658:22a:cafe::/64")
-	bcast = ipaddress.BroadcastAddress(net6)
+	last = ipaddress.LastAddress(net6)
 
-	fmt.Printf("The ipv6 network broadcast address is %s\n", bcast.String())
+	fmt.Printf("The last address in the ipv6 network range is %s\n", last.String())
 }
 ```
 

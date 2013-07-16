@@ -18,12 +18,14 @@ func IpToUint32(ip net.IP) (uint32, error) {
 
 //convert a uint32 to an ipv4
 func Uint32ToIP(ip uint32) net.IP {
-	return net.IPv4(byte(ip>>24), byte(ip>>16), byte(ip>>8), byte(ip))
+	addr := net.IP{0,0,0,0}
+	binary.BigEndian.PutUint32(addr, ip)
+	return addr
 }
 
-// Return the broadcast address of a net range. Convert to IPv4 if possible,
+// Return the final address of a net range. Convert to IPv4 if possible,
 // otherwise return an ipv6
-func BroadcastAddress(n *net.IPNet) net.IP {
+func LastAddress(n *net.IPNet) net.IP {
 	ip := n.IP.To4()
 	if ip == nil {
 		ip = n.IP

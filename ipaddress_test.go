@@ -53,12 +53,12 @@ func TestUint32ToIp(t *testing.T) {
 	}
 }
 
-func TestBroadcastAddress(t *testing.T) {
+func TestLastAddress(t *testing.T) {
 	_, netw, _ := net.ParseCIDR("1.2.3.4/24")
-	broadcast := BroadcastAddress(netw)
-	assertEqual(t, "1.2.3.255", broadcast.String())
+	last := LastAddress(netw)
+	assertEqual(t, "1.2.3.255", last.String())
 
 	_, net6, _ := net.ParseCIDR("2001:658:22a:cafe::/64")
-	broadcast = BroadcastAddress(net6)
-	assertEqual(t, "2001:658:22a:cafe:ffff:ffff:ffff:ffff", broadcast.String())
+	last = LastAddress(net6)
+	assertEqual(t, "2001:658:22a:cafe:ffff:ffff:ffff:ffff", last.String())
 }
